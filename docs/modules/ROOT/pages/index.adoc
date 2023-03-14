@@ -1,0 +1,51 @@
+= Quarkus Reactive Mysql Pool Client
+
+include::./includes/attributes.adoc[]
+
+**ATTENTION: Quarkus 2 Only**
+
+This extension enable usage of reactive client on mysql/mariadb galera cluster with support of fatal tolerance and load balance.
+
+There is built-in load balance support from MySQL Connector/J driver, so we can config load balance in application.properties with
+`quarkus.datasource.jdbc.url=jdbc:mysql:loadbalance://192.168.32.101:3306,192.168.32.102:3306/dbname`
+to take this advantage for non-reactive data source.
+
+While switch to reactive data source, there is no build-in support for this style of load balance. According to
+https://vertx.io/docs/vertx-mysql-client/java/#_advanced_pool_configuration[Vert.x mysql client document],
+vert.x mysql client not support the `loadbalance` keyword within url. But vert.x do support server load balance with
+a vert.x pool of a list of servers. Given the pool only provide a round-robin load balancing to select different
+servers when a connection is created rather when the connection is borrowed from the pool.
+
+To add fatal tolerance and load balance support to reactive mysql client, we can just take usage of
+`MySQLPool.pool(Vertx vertx, List<MySQLConnectOptions> databases, PoolOptions options)` to create the pool if the comma
+is present within the url string. Then we can use `quarkus.datasource.reactive.url` as below:
+
+`mysql:loadbalance://192.168.32.101:3306,192.168.32.102:3306/dbname`
+
+`mysql://192.168.32.101:3306,192.168.32.102:3306/dbname`
+
+The url is to minic mysql jdbc driver, so it's easy to maintain config for all services.
+
+Related discuss is here https://github.com/quarkusio/quarkus/issues/31492[#31492]
+
+== Installation
+
+If you want to use this extension, you need to add the `io.quarkiverse.quarkus-reactive-mysql-pool-client:quarkus-reactive-mysql-pool-client` extension first to your build file.
+
+For instance, with Maven, add the following dependency to your POM file:
+
+[source,xml,subs=attributes+]
+----
+<dependency>
+    <groupId>io.quarkiverse.quarkus-reactive-mysql-pool-client</groupId>
+    <artifactId>quarkus-reactive-mysql-pool-client</artifactId>
+    <version>{project-version}</version>
+</dependency>
+----
+
+[[extension-configuration-reference]]
+== Extension Configuration Reference
+
+TIP: Remove this section if you don't have Quarkus configuration properties in your extension.
+
+include::includes/quarkus-reactive-mysql-pool-client.adoc[leveloffset=+1, opts=optional]

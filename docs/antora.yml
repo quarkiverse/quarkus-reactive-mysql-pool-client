@@ -1,0 +1,5 @@
+name: quarkus-reactive-mysql-pool-client
+title: Quarkus Reactive Mysql Pool Client
+version: dev
+nav:
+  - modules/ROOT/nav.adoc

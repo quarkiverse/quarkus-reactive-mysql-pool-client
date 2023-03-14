@@ -1,0 +1,19 @@
+name: Reactive Mysql Pool Client
+#description: Do something useful.
+metadata:
+  keywords:
+    - "eclipse-vert.x"
+    - "vertx"
+    - "vert.x"
+    - "reactive"
+    - "database"
+    - "data"
+    - "mysql"
+    - "pool"
+  #  guide: https://quarkiverse.github.io/quarkiverse-docs/reactive-mysql-pool-client/dev/
+  categories:
+    - "data"
+    - "reactive"
+  status: "stable"
+  config:
+    - "quarkus.datasource."
