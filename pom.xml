@@ -10,7 +10,7 @@
 
   <groupId>io.quarkiverse.quarkus-reactive-mysql-pool-client</groupId>
   <artifactId>quarkus-reactive-mysql-pool-client-parent</artifactId>
-  <version>0.1.2</version>
+  <version>999-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Quarkus Reactive Mysql Pool Client - Parent</name>
 
@@ -76,8 +76,4 @@
       </modules>
     </profile>
   </profiles>
-
-  <scm>
-    <tag>0.1.2</tag>
-  </scm>
 </project>
