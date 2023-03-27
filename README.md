@@ -30,7 +30,12 @@ The url is to minic mysql jdbc driver, so it's easy to maintain config for all s
 
 Related discuss is here [#31492](https://github.com/quarkusio/quarkus/issues/31492)
 
-For Quarkus 3, we can write a similar driver once it's mature enough.
+**Update on 2023-03-27:**
+
+You can also use list of urls introduced in Quarkus 3 as below:
+```
+quarkus.datasource.reactive.url=mysql://host1:3306/dbname,mysql://host2:3306/dbname
+```
 
 ## Documentation
 

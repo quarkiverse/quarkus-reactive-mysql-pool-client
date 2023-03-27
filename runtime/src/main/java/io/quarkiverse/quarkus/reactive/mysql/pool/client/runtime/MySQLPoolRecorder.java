@@ -114,6 +114,11 @@ public class MySQLPoolRecorder {
             return null;
         }
         hostBegin += 3;
+
+        if (url.lastIndexOf("://") != hostBegin) {
+            return url.split(",");
+        }
+
         String prefix = url.substring(0, hostBegin).replace(":loadbalance:", ":");
 
         int portEnd = url.indexOf('/', hostBegin + 1);

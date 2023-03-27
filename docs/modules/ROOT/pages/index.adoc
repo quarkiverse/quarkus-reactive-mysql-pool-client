@@ -18,15 +18,24 @@ servers when a connection is created rather when the connection is borrowed from
 
 To add fatal tolerance and load balance support to reactive mysql client, we can just take usage of
 `MySQLPool.pool(Vertx vertx, List<MySQLConnectOptions> databases, PoolOptions options)` to create the pool if the comma
-is present within the url string. Then we can use `quarkus.datasource.reactive.url` as below:
-
-`mysql:loadbalance://192.168.32.101:3306,192.168.32.102:3306/dbname`
-
-`mysql://192.168.32.101:3306,192.168.32.102:3306/dbname`
-
+is present within the url string. Then we can use config as below:
+```
+quarkus.datasource.reactive.url=mysql:loadbalance://192.168.32.101:3306,192.168.32.102:3306/dbname
+```
+or
+```
+quarkus.datasource.reactive.url=mysql://192.168.32.101:3306,192.168.32.102:3306/dbname
+```
 The url is to minic mysql jdbc driver, so it's easy to maintain config for all services.
 
 Related discuss is here https://github.com/quarkusio/quarkus/issues/31492[#31492]
+
+**Update on 2023-03-27:**
+
+You can also use list of urls introduced in Quarkus 3 as below:
+```
+quarkus.datasource.reactive.url=mysql://host1:3306/dbname,mysql://host2:3306/dbname
+```
 
 == Installation
 
